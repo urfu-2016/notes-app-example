@@ -1,0 +1,17 @@
+sudo: false
+language: node_js
+node_js:
+- '6'
+install:
+- npm install
+before_script:
+- npm run lint
+after_success:
+- '[ "${TRAVIS_PULL_REQUEST}" = "false" ] && npm run deploy:surge'
+deploy:
+  provider: heroku
+  api_key:
+    secure: HDS9M8xVVa6NyI9QV1ZDvW4Xp+sSRW5tx+Grf1ViVYwNv4dSSmHvKLcl14NQmIJ0vAmyoKj9Ld7cfqh5Qybl9X1+PkrAtUVGUI9F5rhwWyx6tb9ARTUE5VLo8R3CQNosdplc8d2Xji89yXPf/oncKjnjw2ycjX5tG+eWfOrF1v2y7u2cCAGKmYY03Zf+lqNK/f4Hwy5cAGg1Vc+Wq3+TmF/+m4iuNeHnpjtxMXC3hzaQ8QbVqMZF2g4F9NR0ZjRkkPn7xzGL2PD/HsNr/6ITf+6VSTeACta/L/jgKvt5KOeRZhOuIFfwsEylpTghitnMdCXniplwxAdb1m3m26UepBnDF6lNsATFUK6esYAhe4HlVK1ihFMmkcfnZ3uv/pjxuQpbxW39Du5QOppVpuanADc9uYWWaHuEEp0kJOvzbzrLBmyd9Sd4FQ2K6Cyb3cpq1OSAgHE1QZuORWnFlIHw05HURVI5ZgAG/tJPoExZ7crq7IyS0zRlhiqbPZ//SGBoYYUn5UjWWReODdOnHkRrOrOjNnFoVztntUxzj/jyWu15a8EV53SllU+EyBXywdwPY9tNiC12VICtmCcZ8+utZus5eZ75oIs+MTSEd9AmeitcuXus6UA4ONjS7gC/WCAYgZrhdd8d+pXpxH/Up7SlkWt6Djcv/Z50KYf0ZA6676M=
+  app: urfu2016-notes
+  on:
+    repo: urfu-2016/notes-app-example
